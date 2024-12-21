@@ -1,0 +1,3 @@
+edgar_identity: David Oliver david.olivercort@gmail.com
+edgar_form: 10-K
+summariser_checkpoint: "facebook/bart-large-cnn"

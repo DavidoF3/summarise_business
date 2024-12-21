@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  fastapi_app:
+    container_name: fastapi_app
+    build: .
+    ports:
+      - "4000:4000"
+    environment:
+      DB_URL: mongodb://mongodb:27017/
+      DB_NAME: argo
+      COLLECTION_NAME: summary
+    depends_on:
+      - mongodb
+  mongodb:
+    container_name: mongodb
+    image: mongodb/mongodb-community-server:7.0.11-ubuntu2204
+    environment:
+      MONGO_INIT_DB_ROOT_USERNAME: db_user
+      MONGO_INIT_DB_ROOT_PASSWORD: db_password
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodata:/data/db
+      - mongoconfig:/data/configdb
+
+volumes:
+  mongodata:
+    driver: local
+  mongoconfig:
+    driver: local
